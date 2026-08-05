@@ -19,16 +19,14 @@ export default function Hero() {
 
             <p className="mt-4 text-lg font-medium text-slate-600">
               Software Engineer <span className="mx-1 text-slate-400">|</span>{" "}
-              Data Engineering{" "}
-              <span className="mx-1 text-slate-400">|</span> Application
-              Security
+              Application Security{" "}
+              <span className="mx-1 text-slate-400">|</span> DevSecOps
             </p>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600">
-              Passionate about building secure, scalable applications and
-              turning complex data into actionable insights. Currently pursuing
-              Computer Science &amp; Software Engineering at the University of
-              Washington Bothell.
+              Building secure, resilient systems where thoughtful engineering,
+              application security, and DevSecOps meet. Continuing my graduate
+              studies in cybersecurity at the University of Washington Bothell.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">

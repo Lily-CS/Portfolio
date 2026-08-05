@@ -1,4 +1,4 @@
-import { Users, Shield, Calendar, Trophy } from "lucide-react";
+import { Users, Shield, Calendar, Trophy, Radar } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Experience = {
@@ -16,6 +16,15 @@ type Stat = {
 };
 
 const EXPERIENCES: Experience[] = [
+  {
+    role: "President, ThinkCyber",
+    org: "Cybersecurity Awareness Program",
+    period: "2025 - Present",
+    description:
+      "Developing a repeatable quarterly program and a flagship cybersecurity awareness initiative — turning past lessons in event ops and community building into a durable operating model.",
+    badge: "Leadership",
+    icon: Radar,
+  },
   {
     role: "VP IxDA UW Bothell",
     org: "Interaction Design Association",

@@ -11,6 +11,7 @@ import {
   Users,
   FileCode2,
   Handshake,
+  Radar,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -24,6 +25,15 @@ type Initiative = {
 };
 
 const INITIATIVES: Initiative[] = [
+  {
+    title: "ThinkCyber Program Development",
+    org: "ThinkCyber — Cybersecurity Awareness",
+    description:
+      "Building a repeatable quarterly programming rhythm and a flagship cybersecurity awareness initiative — codifying past lessons in event ops and community building into a durable operating model.",
+    tags: ["Program Design", "Cybersecurity Awareness", "Operations"],
+    icon: Radar,
+    accent: "from-violet-500 to-fuchsia-500",
+  },
   {
     title: "WiCyS Chapter Revival",
     org: "Women in Cybersecurity — UW Bothell",
