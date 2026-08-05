@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   Mail,
   MessageCircle,
@@ -7,8 +7,9 @@ import {
   Send,
   CheckCircle2,
 } from "lucide-react";
+import { SITE, mailto } from "../config/site";
 
-const EMAIL = "lily.aguirre@example.com";
+const SENT_RESET_MS = 4000;
 
 export default function Contact() {
   return (
@@ -39,19 +40,23 @@ export default function Contact() {
 function MessageForm() {
   const [sent, setSent] = useState(false);
 
+  useEffect(() => {
+    if (!sent) return;
+    const t = window.setTimeout(() => setSent(false), SENT_RESET_MS);
+    return () => window.clearTimeout(t);
+  }, [sent]);
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const subject = encodeURIComponent(
-      `Portfolio message from ${data.get("name") ?? "someone"}`
-    );
-    const body = encodeURIComponent(
-      `${data.get("message") ?? ""}\n\n— ${data.get("name") ?? ""} (${
-        data.get("email") ?? ""
-      })`
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    const name = String(data.get("name") ?? "");
+    const email = String(data.get("email") ?? "");
+    const message = String(data.get("message") ?? "");
+    window.location.href = mailto(SITE.email, {
+      subject: `Portfolio message from ${name || "someone"}`,
+      body: `${message}\n\n— ${name}${email ? ` (${email})` : ""}`,
+    });
     setSent(true);
     form.reset();
   }
@@ -150,8 +155,8 @@ function GetInTouch() {
         <InfoCard
           icon={Mail}
           title="Email"
-          value={EMAIL}
-          href={`mailto:${EMAIL}`}
+          value={SITE.email}
+          href={mailto()}
         />
         <InfoCard
           icon={MessageCircle}
@@ -167,14 +172,10 @@ function GetInTouch() {
         <SocialButton
           icon={Linkedin}
           label="LinkedIn"
-          href="https://www.linkedin.com/"
+          href={SITE.linkedinUrl}
         />
-        <SocialButton
-          icon={Github}
-          label="GitHub"
-          href="https://github.com/"
-        />
-        <SocialButton icon={Mail} label="Email" href={`mailto:${EMAIL}`} />
+        <SocialButton icon={Github} label="GitHub" href={SITE.githubUrl} />
+        <SocialButton icon={Mail} label="Email" href={mailto()} />
       </div>
 
       <div className="mt-8 rounded-xl border border-brand-100 bg-brand-50/60 p-5">

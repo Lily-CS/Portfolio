@@ -1,5 +1,6 @@
 import { ExternalLink, Github, ShieldCheck, Cloud, Leaf } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { SITE } from "../config/site";
 
 type Project = {
   title: string;
@@ -85,7 +86,7 @@ export default function Projects() {
 
         <div className="mt-12 flex justify-center">
           <a
-            href="https://github.com/"
+            href={SITE.githubUrl}
             target="_blank"
             rel="noreferrer"
             className="btn-outline"

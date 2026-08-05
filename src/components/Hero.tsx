@@ -1,4 +1,5 @@
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { SITE, mailto } from "../config/site";
 
 export default function Hero() {
   return (
@@ -42,7 +43,7 @@ export default function Hero() {
 
             <div className="mt-6 flex items-center gap-2">
               <a
-                href="https://github.com/"
+                href={SITE.githubUrl}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -51,7 +52,7 @@ export default function Hero() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://www.linkedin.com/"
+                href={SITE.linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
@@ -60,7 +61,7 @@ export default function Hero() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:hello@example.com"
+                href={mailto()}
                 aria-label="Email"
                 className="icon-btn"
               >
