@@ -1,38 +1,23 @@
-import { GraduationCap, Users, Shield, Code2 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-
-type Role = {
+type FocusArea = {
   title: string;
-  period: string;
   description: string;
-  icon: LucideIcon;
 };
 
-const ROLES: Role[] = [
+const FOCUS_AREAS: FocusArea[] = [
   {
-    title: "Computer Science Student",
-    period: "2022 - Present",
+    title: "Secure engineering",
     description:
-      "University of Washington Bothell — Software Engineering Focus",
-    icon: GraduationCap,
+      "Combining software engineering, user-centered design, and cybersecurity to build systems that are useful, maintainable, and resilient.",
   },
   {
-    title: "VP IxDA UW Bothell",
-    period: "2024",
-    description: "Leading the Interaction Design Association chapter",
-    icon: Users,
+    title: "Operational leadership",
+    description:
+      "Turning goals into clear ownership, dependencies, deliverables, and repeatable processes that help teams execute.",
   },
   {
-    title: "President WiCyS UW Bothell",
-    period: "2023 - 2024",
-    description: "Women in Cybersecurity chapter leadership",
-    icon: Shield,
-  },
-  {
-    title: "Hackathon Coordinator",
-    period: "2023",
-    description: "Organizing coding competitions and tech events",
-    icon: Code2,
+    title: "Evidence-driven growth",
+    description:
+      "Documenting decisions, measuring outcomes, and using what I learn to improve the next project, program, or system.",
   },
 ];
 
@@ -43,63 +28,83 @@ export default function About() {
       className="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/40 to-brand-100/40 py-24"
     >
       <div className="mx-auto max-w-6xl px-6">
-        <header className="mx-auto max-w-2xl text-center">
+        <header className="mx-auto max-w-3xl text-center">
           <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
             About Me
           </h2>
-          <p className="mt-4 text-base text-slate-600">
-            Driven by curiosity and a passion for technology, I'm dedicated to
-            creating solutions that make a difference.
+          <p className="mt-4 text-base leading-relaxed text-slate-600">
+            My work sits at the intersection of software engineering,
+            cybersecurity, and people-centered leadership.
           </p>
         </header>
 
-        <div className="mt-16 grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
-          <div className="space-y-5 text-slate-600 leading-relaxed">
+        <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-[1.35fr_0.9fr] lg:gap-16">
+          <div className="space-y-5 text-base leading-relaxed text-slate-600">
             <p>
-              I'm a Computer Science student at the University of Washington
-              Bothell with a focus on Software Engineering. My journey in tech
-              is driven by a deep curiosity about how we can use technology to
-              solve real-world problems and create more secure, accessible
-              digital experiences.
+              I completed my bachelor's degree in Computer Science &amp;
+              Software Engineering at the University of Washington Bothell and
+              am continuing my graduate studies in cybersecurity. That
+              combination shapes how I approach technical work: understand the
+              people a system serves, examine its risks, and build solutions
+              that can be tested and improved.
             </p>
+
             <p>
-              Beyond coding, I'm passionate about leadership and community
-              building. As VP of IxDA UW Bothell and former President of WiCyS
-              UW Bothell, I work to create inclusive spaces where diverse
-              voices can thrive in technology.
+              My interests include secure software engineering, application
+              security, DevSecOps, and the technical evidence behind sound
+              decisions. I value clear requirements, documented tradeoffs,
+              measurable results, and systems that remain maintainable after
+              delivery.
             </p>
+
             <p>
-              When I'm not debugging code or organizing events, you'll find me
-              exploring new frameworks, contributing to open source projects,
-              or mentoring fellow students in their tech journey.
+              Leadership has been an important part of my growth. I progressed
+              from collaborating as IxDA vice president to managing a
+              five-officer team, dependencies, and event delivery as WiCyS
+              president. I now apply those lessons as ThinkCyber president,
+              developing a repeatable quarterly program and a flagship
+              cybersecurity awareness initiative.
             </p>
+
+            <div className="flex flex-wrap gap-3 pt-3">
+              <a href="#projects" className="btn-primary">
+                View technical work
+              </a>
+              <a href="#leadership" className="btn-outline">
+                Explore leadership impact
+              </a>
+            </div>
           </div>
 
-          <ul className="space-y-4">
-            {ROLES.map((role) => (
-              <RoleCard key={role.title} {...role} />
-            ))}
-          </ul>
+          <aside
+            aria-labelledby="about-focus-title"
+            className="rounded-2xl border border-slate-200/70 bg-white p-6 shadow-sm shadow-slate-200/40 sm:p-7"
+          >
+            <h3
+              id="about-focus-title"
+              className="text-lg font-semibold text-slate-900"
+            >
+              How I work
+            </h3>
+
+            <ul className="mt-5 space-y-4">
+              {FOCUS_AREAS.map((area) => (
+                <li
+                  key={area.title}
+                  className="rounded-xl bg-brand-50/70 p-4 ring-1 ring-brand-100"
+                >
+                  <h4 className="text-sm font-semibold text-brand-800">
+                    {area.title}
+                  </h4>
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+                    {area.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
       </div>
     </section>
-  );
-}
-
-function RoleCard({ title, period, description, icon: Icon }: Role) {
-  return (
-    <li className="group flex items-start gap-4 rounded-xl border border-slate-200/70 bg-white p-5 shadow-sm shadow-slate-200/40 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md">
-      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100 group-hover:bg-brand-100">
-        <Icon className="h-5 w-5" />
-      </span>
-
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-          <h3 className="text-base font-semibold text-slate-900">{title}</h3>
-          <span className="text-xs font-medium text-slate-500">{period}</span>
-        </div>
-        <p className="mt-1 text-sm text-slate-600">{description}</p>
-      </div>
-    </li>
   );
 }
