@@ -1,4 +1,4 @@
-import { Users, Shield, Calendar, Trophy } from "lucide-react";
+import { Users, Shield, Calendar, Trophy, Radar } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Experience = {
@@ -10,12 +10,16 @@ type Experience = {
   icon: LucideIcon;
 };
 
-type Stat = {
-  value: string;
-  label: string;
-};
-
 const EXPERIENCES: Experience[] = [
+  {
+    role: "President, ThinkCyber",
+    org: "Cybersecurity Awareness Program",
+    period: "2025 - Present",
+    description:
+      "Developing a repeatable quarterly program and a flagship cybersecurity awareness initiative — turning past lessons in event ops and community building into a durable operating model.",
+    badge: "Leadership",
+    icon: Radar,
+  },
   {
     role: "VP IxDA UW Bothell",
     org: "Interaction Design Association",
@@ -54,12 +58,6 @@ const EXPERIENCES: Experience[] = [
   },
 ];
 
-const STATS: Stat[] = [
-  { value: "150%", label: "Membership Growth" },
-  { value: "200+", label: "Event Participants" },
-  { value: "5+", label: "Major Events Organized" },
-];
-
 export default function Experience() {
   return (
     <section
@@ -91,12 +89,6 @@ export default function Experience() {
             <ExperienceCard key={exp.role} {...exp} />
           ))}
         </ul>
-
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {STATS.map((s) => (
-            <StatCard key={s.label} {...s} />
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -136,14 +128,5 @@ function ExperienceCard({
         </div>
       </div>
     </li>
-  );
-}
-
-function StatCard({ value, label }: Stat) {
-  return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm">
-      <div className="text-3xl font-extrabold text-brand-300">{value}</div>
-      <div className="mt-1 text-sm text-blue-100/80">{label}</div>
-    </div>
   );
 }
