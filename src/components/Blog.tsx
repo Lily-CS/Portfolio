@@ -132,6 +132,51 @@ export default function Blog() {
                 principles come directly from software development management.
               </p>
 
+              <section className="mt-12" aria-labelledby="tracking-systems">
+                <h4
+                  id="tracking-systems"
+                  className="text-2xl font-bold text-slate-900"
+                >
+                  The tracking systems behind the process
+                </h4>
+                <p className="mt-4 leading-7 text-slate-700">
+                  These dashboards help me see capacity, progress, deadlines,
+                  and evidence in one place. They also make problems visible:
+                  an overdue item is a signal to review scope and rebaseline
+                  intentionally—not to hide or silently move the date.
+                </p>
+
+                <div className="mt-6 space-y-8">
+                  <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+                    <img
+                      src="/tracking/career-growth-dashboard.jpg"
+                      alt="Career Growth dashboard showing active learning paths, weekly capacity, progress, milestones, and evidence-based accountability rules"
+                      className="h-auto w-full"
+                      loading="lazy"
+                    />
+                    <figcaption className="border-t border-slate-200 px-5 py-4 text-sm leading-6 text-slate-600">
+                      My Career Growth dashboard connects learning, technical
+                      projects, leadership work, and career development to
+                      weekly capacity and evidence-based progress.
+                    </figcaption>
+                  </figure>
+
+                  <figure className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+                    <img
+                      src="/tracking/ticket-project-dashboard.jpg"
+                      alt="Secure Support Ticket System dashboard showing deliverables, task progress, deadlines, schedule health, and traceability quality"
+                      className="h-auto w-full"
+                      loading="lazy"
+                    />
+                    <figcaption className="border-t border-slate-200 px-5 py-4 text-sm leading-6 text-slate-600">
+                      The project-level tracker connects deliverables to source
+                      tasks, requirements, target dates, schedule health, and
+                      portfolio evidence.
+                    </figcaption>
+                  </figure>
+                </div>
+              </section>
+
               <h4 className="mt-12 text-2xl font-bold text-slate-900">
                 The principles I apply
               </h4>
