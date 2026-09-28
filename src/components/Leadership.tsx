@@ -52,6 +52,15 @@ const INITIATIVES: Initiative[] = [
     accent: "from-emerald-500 to-teal-500",
   },
   {
+    title: "UWB Hacks: Save the World 2025 Mentor",
+    org: "UW Bothell Hackathon",
+    description:
+      "Volunteered as a student mentor, guiding participant teams through problem-solving, idea development, and solution exploration during a three-day hackathon serving 600+ participants.",
+    tags: ["Mentorship", "Student Support", "Hackathon"],
+    icon: Users,
+    accent: "from-violet-500 to-fuchsia-500",
+  },
+  {
     title: "Speaker & Advocate",
     org: "Campus panels & tech meetups",
     description:
