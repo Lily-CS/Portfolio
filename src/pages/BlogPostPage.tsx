@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { getPost } from "../content/posts";
-import CustomerServiceLessonsBody from "../components/blog/CustomerServiceLessonsBody";
 import PersonalProjectManagementBody from "../components/blog/PersonalProjectManagementBody";
+import CustomerExperienceCrowdCueBody from "../components/blog/CustomerExperienceCrowdCueBody";
 
 const POST_BODIES: Record<string, () => JSX.Element> = {
-  "customer-service-lessons": CustomerServiceLessonsBody,
   "personal-project-management": PersonalProjectManagementBody,
+  "customer-experience-crowdcue": CustomerExperienceCrowdCueBody,
 };
 
 export default function BlogPostPage() {
