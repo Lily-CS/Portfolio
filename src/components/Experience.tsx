@@ -1,4 +1,4 @@
-import { Users, Shield, Calendar, Trophy } from "lucide-react";
+import { Users, Shield, ShieldCheck, Calendar } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Experience = {
@@ -10,12 +10,16 @@ type Experience = {
   icon: LucideIcon;
 };
 
-type Stat = {
-  value: string;
-  label: string;
-};
-
 const EXPERIENCES: Experience[] = [
+  {
+    role: "Founder and President of ThinkCyber UWBothell",
+    org: "Student Cybersecurity Community",
+    period: "2025 - Present",
+    description:
+      "Founded and lead ThinkCyber — a student cybersecurity community at UW Bothell running workshops, CTF practice, and speaker events.",
+    badge: "Leadership",
+    icon: ShieldCheck,
+  },
   {
     role: "VP IxDA UW Bothell",
     org: "Interaction Design Association",
@@ -43,60 +47,47 @@ const EXPERIENCES: Experience[] = [
     badge: "Event Management",
     icon: Calendar,
   },
-  {
-    role: "Award-winning Capstone Project",
-    org: "SafeZone Ratings Platform",
-    period: "2024",
-    description:
-      "Led development of innovative safety rating platform, winning Best Technical Implementation award for advanced data integration and user experience design.",
-    badge: "Achievement",
-    icon: Trophy,
-  },
 ];
 
-const STATS: Stat[] = [
-  { value: "150%", label: "Membership Growth" },
-  { value: "200+", label: "Event Participants" },
-  { value: "5+", label: "Major Events Organized" },
-];
+// Cascading vertical offsets for each card in the row.
+// Cycled by index — the pattern reads as a gentle wave.
+const CASCADE_OFFSETS = ["md:mt-0", "md:mt-10", "md:mt-4", "md:mt-14"];
 
 export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-[#1c2f74] py-24 text-white"
+      className="relative overflow-hidden bg-[#4b0082] py-24 text-white"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-30"
+        className="pointer-events-none absolute inset-0 opacity-40"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 80% 10%, rgba(96,138,255,0.25), transparent 40%), radial-gradient(circle at 15% 85%, rgba(59,100,245,0.18), transparent 45%)",
+            "radial-gradient(circle at 80% 10%, rgba(196,161,255,0.25), transparent 40%), radial-gradient(circle at 15% 85%, rgba(120,80,200,0.25), transparent 45%)",
         }}
       />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto max-w-6xl px-6">
         <header className="mx-auto max-w-2xl text-center">
           <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
             Experience &amp; Leadership
           </h2>
-          <p className="mt-4 text-base text-blue-100/80">
+          <p className="mt-4 text-base text-purple-100/80">
             Combining technical expertise with leadership experience to drive
             innovation and build inclusive tech communities.
           </p>
         </header>
 
-        <ul className="mt-14 space-y-5">
-          {EXPERIENCES.map((exp) => (
-            <ExperienceCard key={exp.role} {...exp} />
+        <ul className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-4 md:items-start md:gap-x-8">
+          {EXPERIENCES.map((exp, i) => (
+            <ExperienceCard
+              key={exp.role}
+              {...exp}
+              offsetClass={CASCADE_OFFSETS[i % CASCADE_OFFSETS.length]}
+            />
           ))}
         </ul>
-
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {STATS.map((s) => (
-            <StatCard key={s.label} {...s} />
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -109,41 +100,35 @@ function ExperienceCard({
   description,
   badge,
   icon: Icon,
-}: Experience) {
+  offsetClass,
+}: Experience & { offsetClass: string }) {
   return (
-    <li className="rounded-xl bg-white p-6 text-slate-800 shadow-sm ring-1 ring-white/10 transition-transform hover:-translate-y-0.5">
-      <div className="flex items-start gap-4">
-        <span className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-brand-50 text-brand-600 ring-1 ring-brand-100">
-          <Icon className="h-5 w-5" />
-        </span>
-
-        <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <div className="min-w-0">
-              <h3 className="text-base font-semibold text-slate-900">{role}</h3>
-              <p className="text-sm font-medium text-brand-600">{org}</p>
-            </div>
-            <span className="text-xs font-medium text-slate-500">{period}</span>
-          </div>
-
-          <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            {description}
-          </p>
-
-          <span className="mt-3 inline-flex items-center rounded-full bg-slate-800 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white">
-            {badge}
-          </span>
+    <li className={`flex flex-col items-center text-center ${offsetClass}`}>
+      <div className="relative">
+        <div
+          aria-hidden
+          className="absolute -inset-1 rounded-full bg-gradient-to-br from-white/30 via-purple-200/20 to-transparent blur-md"
+        />
+        <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white/10 ring-2 ring-white/25 backdrop-blur-sm sm:h-28 sm:w-28">
+          <Icon className="h-10 w-10 text-white sm:h-12 sm:w-12" />
         </div>
       </div>
-    </li>
-  );
-}
 
-function StatCard({ value, label }: Stat) {
-  return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm">
-      <div className="text-3xl font-extrabold text-brand-300">{value}</div>
-      <div className="mt-1 text-sm text-blue-100/80">{label}</div>
-    </div>
+      <h3 className="mt-5 text-sm font-bold uppercase tracking-wider text-white sm:text-base">
+        {role}
+      </h3>
+      <p className="mt-1 text-xs font-medium text-purple-200/90">{org}</p>
+      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-purple-200/70">
+        {period}
+      </p>
+
+      <p className="mt-3 max-w-[18ch] text-xs leading-relaxed text-purple-100/85 sm:max-w-[22ch]">
+        {description}
+      </p>
+
+      <span className="mt-3 inline-flex items-center rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white ring-1 ring-white/20">
+        {badge}
+      </span>
+    </li>
   );
 }

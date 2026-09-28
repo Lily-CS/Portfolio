@@ -17,6 +17,21 @@ export default {
           800: "#1c3390",
           900: "#1c2f74",
         },
+        // Warm terracotta accent — used sparingly for callouts,
+        // category tags, and moments where the cool blue palette
+        // benefits from a warm counterpoint.
+        accent: {
+          50: "#fdf6f1",
+          100: "#fbe7d5",
+          200: "#f6c9a3",
+          300: "#efa572",
+          400: "#e78349",
+          500: "#d96934",
+          600: "#c05625",
+          700: "#9a4520",
+          800: "#78381e",
+          900: "#5f2f1c",
+        },
       },
       fontFamily: {
         sans: [
@@ -27,6 +42,23 @@ export default {
           "Segoe UI",
           "Roboto",
           "sans-serif",
+        ],
+        display: [
+          "Fraunces",
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "serif",
+        ],
+        mono: [
+          "'JetBrains Mono'",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "monospace",
         ],
       },
       animation: {

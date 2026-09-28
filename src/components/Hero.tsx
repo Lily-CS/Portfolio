@@ -12,14 +12,14 @@ export default function Hero() {
       <div className="mx-auto flex min-h-screen max-w-7xl items-center px-6 pt-24 pb-16">
         <div className="grid w-full grid-cols-1 items-center gap-12 md:grid-cols-2">
           <div className="animate-fade-in-up">
-            <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-6xl">
+            <h1 className="font-display text-5xl font-bold leading-tight tracking-tight text-slate-900 sm:text-6xl">
               Hi, I'm{" "}
               <span className="text-brand-600">Lily Aguirre</span>
             </h1>
 
             <p className="mt-4 text-lg font-medium text-slate-600">
               Software Engineer <span className="mx-1 text-slate-400">|</span>{" "}
-              Data Engineering{" "}
+              Cybersecurity{" "}
               <span className="mx-1 text-slate-400">|</span> Application
               Security
             </p>
@@ -36,8 +36,8 @@ export default function Hero() {
                 View My Work
                 <ArrowDown className="h-4 w-4" />
               </a>
-              <a href="#contact" className="btn-outline">
-                Contact Me
+              <a href={mailto()} className="btn-outline">
+                Get in Touch
               </a>
             </div>
 

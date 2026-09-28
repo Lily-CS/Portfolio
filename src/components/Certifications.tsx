@@ -1,46 +1,35 @@
-import { Award, Trophy, Calendar } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 
 type Certification = {
   title: string;
   issuer: string;
   year: string;
   description: string;
-  icon: LucideIcon;
+  image: string;
+  imageAlt: string;
+  inProgress?: boolean;
 };
 
 const CERTIFICATIONS: Certification[] = [
   {
-    title: "AWS Certified Solutions Architect",
-    issuer: "Amazon Web Services",
-    year: "2024",
+    title: "Linux Foundation Certified SysAdmin (LFCS)",
+    issuer: "The Linux Foundation",
+    year: "Expected 2026",
     description:
-      "Professional certification demonstrating expertise in designing distributed systems on AWS.",
-    icon: Award,
+      "Hands-on certification covering Linux system administration: user and process management, networking, storage, and shell scripting.",
+    image: "/certs/lfcs.png",
+    imageAlt: "The Linux Foundation Certified SysAdmin badge",
+    inProgress: true,
   },
   {
-    title: "Google Professional Cloud Architect",
-    issuer: "Google Cloud",
-    year: "2023",
+    title: "Introduction to Linux (LFS101)",
+    issuer: "The Linux Foundation — Education",
+    year: "In progress · 2026",
     description:
-      "Expert-level certification for designing and managing cloud architecture solutions.",
-    icon: Trophy,
-  },
-  {
-    title: "Certified Kubernetes Administrator",
-    issuer: "Cloud Native Computing Foundation",
-    year: "2023",
-    description:
-      "Validates skills in deploying, managing, and troubleshooting Kubernetes clusters.",
-    icon: Award,
-  },
-  {
-    title: "Professional Scrum Master I",
-    issuer: "Scrum.org",
-    year: "2022",
-    description:
-      "Certification in Scrum framework and agile project management principles.",
-    icon: Trophy,
+      "Foundational course covering Linux fundamentals: system architecture, file systems, the command line, users and permissions, and everyday sysadmin tasks.",
+    image: "/certs/lfs101.png",
+    imageAlt: "Linux Foundation Introduction to Linux LFS101 course badge",
+    inProgress: true,
   },
 ];
 
@@ -52,16 +41,16 @@ export default function Certifications() {
     >
       <div className="mx-auto max-w-5xl px-6">
         <header className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
             Certifications
           </h2>
           <p className="mt-4 text-base text-slate-600">
-            Professional certifications validating my technical expertise and
-            commitment to continuous learning.
+            Certifications and courses I'm actively working toward as part of
+            my ongoing growth in security and systems.
           </p>
         </header>
 
-        <ul className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
+        <ul className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
           {CERTIFICATIONS.map((cert) => (
             <CertificationCard key={cert.title} {...cert} />
           ))}
@@ -76,20 +65,41 @@ function CertificationCard({
   issuer,
   year,
   description,
-  icon: Icon,
+  image,
+  imageAlt,
+  inProgress,
 }: Certification) {
   return (
-    <li className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md">
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-start gap-3">
-          <Icon className="mt-0.5 h-5 w-5 flex-none text-brand-600" />
-          <div className="min-w-0">
-            <h3 className="text-base font-semibold text-slate-900">{title}</h3>
-            <p className="mt-1 text-sm text-slate-500">{issuer}</p>
-          </div>
+    <li
+      className={`group relative flex flex-col rounded-xl border bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md ${
+        inProgress
+          ? "border-brand-300/70 ring-1 ring-brand-100"
+          : "border-slate-200 hover:border-brand-200"
+      }`}
+    >
+      {inProgress && (
+        <span className="absolute -top-2 right-4 inline-flex items-center gap-1 rounded-full bg-brand-600 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-white shadow-sm ring-2 ring-white">
+          <Clock className="h-3 w-3" />
+          In Progress
+        </span>
+      )}
+
+      <div className="flex justify-center rounded-lg bg-slate-50/60 py-5">
+        <img
+          src={image}
+          alt={imageAlt}
+          loading="lazy"
+          className="h-32 w-auto object-contain"
+        />
+      </div>
+
+      <div className="mt-5 flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h3 className="text-base font-semibold text-slate-900">{title}</h3>
+          <p className="mt-1 text-sm text-slate-500">{issuer}</p>
         </div>
 
-        <span className="inline-flex flex-none items-center gap-1 text-xs font-medium text-slate-500">
+        <span className="inline-flex flex-none items-center gap-1 font-mono text-[11px] font-medium uppercase tracking-wider text-slate-500">
           <Calendar className="h-3.5 w-3.5" />
           {year}
         </span>

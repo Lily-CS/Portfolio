@@ -54,7 +54,7 @@ export default function Skills() {
 
       <div className="relative mx-auto max-w-6xl px-6">
         <header className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+          <h2 className="font-display text-4xl font-bold tracking-tight sm:text-5xl">
             Skills &amp; Tools
           </h2>
           <p className="mt-4 text-base text-blue-100/80">

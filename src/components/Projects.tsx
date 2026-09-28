@@ -69,7 +69,7 @@ export default function Projects() {
     >
       <div className="mx-auto max-w-6xl px-6">
         <header className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <h2 className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
             My Work
           </h2>
           <p className="mt-4 text-base text-slate-600">

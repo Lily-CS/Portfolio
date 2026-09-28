@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Moon, Sun } from "lucide-react";
 
 const NAV_ITEMS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "leadership", label: "Leadership" },
   { id: "certifications", label: "Certifications" },
+  { id: "community", label: "Community" },
   { id: "blog", label: "Blog" },
-  { id: "contact", label: "Contact" },
 ];
 
 export default function Navbar() {
-  const [active, setActive] = useState<string>("home");
+  const { pathname, hash } = useLocation();
+  const isHome = pathname === "/";
+  const [active, setActive] = useState<string>(hash ? hash.slice(1) : "home");
   const [dark, setDark] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
 
@@ -29,34 +31,39 @@ export default function Navbar() {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
+  useEffect(() => {
+    if (hash) setActive(hash.slice(1));
+    else if (!isHome) setActive("blog");
+  }, [hash, isHome]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all ${
-        scrolled
+        scrolled || !isHome
           ? "backdrop-blur-md bg-white/70 border-b border-slate-200/60 shadow-sm"
           : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a
-          href="#home"
+        <Link
+          to="/#home"
           className="text-lg font-bold tracking-tight text-brand-600"
         >
           Lily Aguirre
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_ITEMS.map((item) => (
             <li key={item.id}>
-              <a
-                href={`#${item.id}`}
+              <Link
+                to={`/#${item.id}`}
                 onClick={() => setActive(item.id)}
                 className={`nav-link ${
                   active === item.id ? "nav-link-active" : ""
                 }`}
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
